@@ -12,7 +12,7 @@ public:
 	void RotarIzquierda(Node<T>*& A);
 	void RotarDerecha(Node<T>*& A);
 	void Insertar(T elemento);
-	void Insertar(Node<T>*& A, T elem, bool& continuar, bool& paridad, bool& lado);
+	void Insertar(Node<T>*& A, T elem, bool continuar, bool paridad, bool lado);
 
 	void mostrarInOrder();
 	void mostrarInOrder(Node<T>* A);
@@ -78,12 +78,12 @@ void ArbolRN<T>::RotarDerecha(Node<T>*& A)
 template<class T>
 void ArbolRN<T>::Insertar(T elem)
 {
-	bool Continuar, Paridad, Lado; //lado derecho true
+	bool Continuar = false, Paridad = false, Lado = false; //lado derecho true
 	Insertar(raiz, elem, Continuar, Paridad, Lado);
 }
 
 template<class T>
-void ArbolRN<T>::Insertar(Node<T>*& A, T elem, bool& conti, bool& pari, bool& lado)
+void ArbolRN<T>::Insertar(Node<T>*& A, T elem, bool conti, bool pari, bool lado)
 {
 	if (A == NULL)
 	{

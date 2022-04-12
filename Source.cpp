@@ -3,20 +3,18 @@
 
 void leerDeArchivo(ArbolRN<int>& arbolBinario)
 {
-    ifstream archi;
+    fstream ar;
     int numerosArchivo;
 
-
-    archi.open("10000_Numeros.txt");
-
-    if (!archi)
+    ar.open("10000_Numeros.txt", ios::in);
+    if (!ar)
         cout << "No se puede abrir";
     else
-        while (!archi.eof() && archi >> numerosArchivo)
+        while (ar >> numerosArchivo)
         {
             arbolBinario.Insertar(numerosArchivo);
         }
-    archi.close();
+    ar.close();
 }
 
 int main()
@@ -53,7 +51,7 @@ int main()
     cout << arbol3.Contar() << endl;
     cout << "altura total" << endl;
     cout << arbol3.Altura() << endl;
-    cout << "altura negra" << endl;
-    cout << arbol3.AlturaNegra() << endl;
-
+    cout << "cantidad:" << endl;
+    cout << arbol3.Contar() << endl;
+    //carbol3.mostrarInOrder();
 }
