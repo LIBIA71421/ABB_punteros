@@ -21,6 +21,7 @@ public:
 	void setDato(T dato);
 	void crearIzquierda(Node<T>* newizquierda);
 	void crearDerecha(Node<T>* newderecha);
+//	void operator=(T dato);
 };
 
 template<class T>
