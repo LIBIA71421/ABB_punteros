@@ -6,13 +6,14 @@ class ArbolRN
 {
 private:
 	Node<T>* raiz;
+	int cont;
 public:
 	ArbolRN();
 	~ArbolRN();
 	void RotarIzquierda(Node<T>*& A);
 	void RotarDerecha(Node<T>*& A);
 	void Insertar(T elemento);
-	void Insertar(Node<T>*& A, T elem, bool continuar, bool paridad, bool lado);
+	void Insertar(Node<T>*& A, T elem, bool &continuar, bool &paridad, bool &lado);
 
 	void mostrarInOrder();
 	void mostrarInOrder(Node<T>* A);
@@ -32,12 +33,18 @@ public:
 	int AlturaNegra(Node<T>* A, int& tot);
 	int AlturaNegra2();
 	int AlturaNegra(Node<T>* A);
+
+	void SetRaiz(string color);
+	void SetRaiz(Node<T>* A, string color);
+	void getCont();
+	Node<T>*& search(Node<T>*& root, T* value);
 };
 
 template<class T>
 ArbolRN<T>::ArbolRN()
 {
 	raiz = NULL;
+	cont = 0;
 }
 
 template<class T>
@@ -83,7 +90,7 @@ void ArbolRN<T>::Insertar(T elem)
 }
 
 template<class T>
-void ArbolRN<T>::Insertar(Node<T>*& A, T elem, bool conti, bool pari, bool lado)
+void ArbolRN<T>::Insertar(Node<T>*& A, T elem, bool &conti, bool &pari, bool &lado)
 {
 	if (A == NULL)
 	{
@@ -181,7 +188,24 @@ void ArbolRN<T>::Insertar(Node<T>*& A, T elem, bool conti, bool pari, bool lado)
 				}
 			}
 		}
+		if (A->getDato() == elem)
+		{
+			A->setCont();
+		}
 	}
+}
+template<class T>
+void ArbolRN<T>::SetRaiz(string color) {
+	SetRaiz(raiz, color);
+}
+
+template<class T>
+void ArbolRN<T>::SetRaiz(Node<T>* A, string color) {
+	A->setColor(color);
+}
+template<class T>
+void ArbolRN<T>::getCont(){
+	return cont;
 }
 
 template<class T>
@@ -201,7 +225,7 @@ void ArbolRN<T>::mostrarInOrder(Node<T>* A)
 	else
 	{
 		mostrarInOrder(A->getIzquierda());
-		cout << A->getDato() << ", " << A->getColor() << endl;
+		cout << A->getDato() << ", " << A->getColor() << "Contador: " << A->getCont()<< endl;
 		mostrarInOrder(A->getDerecha());
 	}
 }

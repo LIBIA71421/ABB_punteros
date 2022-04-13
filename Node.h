@@ -10,6 +10,7 @@ private:
 	string Color;
 	Node<T>* izquierda;
 	Node<T>* derecha;
+	int cont;
 public:
 	Node();
 	~Node();
@@ -21,6 +22,10 @@ public:
 	void setDato(T dato);
 	void crearIzquierda(Node<T>* newizquierda);
 	void crearDerecha(Node<T>* newderecha);
+
+	int getCont();
+	void setCont();
+
 //	void operator=(T dato);
 };
 
@@ -29,8 +34,8 @@ Node<T>::Node()
 {
 	this->izquierda = NULL;
 	this->derecha = NULL;
-	this->Dato = NULL;
 	this->Color = "";
+	cont = 0;
 }
 
 template<class T>
@@ -49,7 +54,16 @@ Node<T>*& Node<T>::getDerecha()
 {
 	return derecha;
 }
-
+template<class T>
+int Node<T>::getCont()
+{
+	return cont;
+}
+template<class T>
+void Node<T>::setCont()
+{
+	cont++;
+}
 template<class T>
 T Node<T>::getDato()
 {
@@ -72,6 +86,7 @@ template<class T>
 void Node<T>::setDato(T dato)
 {
 	Dato = dato;
+	cont++;
 }
 
 template<class T>

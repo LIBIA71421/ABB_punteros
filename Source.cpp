@@ -17,27 +17,14 @@ void leerDeArchivo(ArbolRN<int>& arbolBinario)
         }
     ar.close();
 }
-void leerDeArchivoT(ArbolRN<string>& arbolBinario)
-{
-    fstream ar;
-    string numerosArchivo;
-
-    ar.open("cien.txt", ios::in);
-    if (!ar)
-        cout << "No se puede abrir";
-    else
-        while (ar >> numerosArchivo)
-        {
-            arbolBinario.Insertar(numerosArchivo);
-        }
-    ar.close();
-}
 
 int main()
 {
-    ArbolRN<string> arbolC;
+    ArbolRN<string>* arbolC = new ArbolRN<string>();
     ArbolRN<int> arbol;
     ArbolRN<int> arbol3;
+    ifstream arch("cien.txt");
+    string palabra;
 
     int op;
     do {
@@ -46,8 +33,8 @@ int main()
         cout << " \n3. Mostrar InOrder \n ";
         cout << " \n4. Contar Nodos \n ";
         cout << " \n5. Contar Altura \n ";
-        cout << " \n6. Revisar ";
-        cout << " \n7. ARCHIVO CIEN ";
+        cout << " \n6. Revisar \n";
+        cout << " \n7. ARCHIVO CIEN \n";
         cin >> op;
         switch (op)
         {
@@ -69,25 +56,28 @@ int main()
                 break;
             case 4:
                 cout << "contando total" << endl;
-                cout << arbol3.Contar() << endl;
+                cout << arbolC->Contar() << endl;
                 break;
             case 5:
                 cout << "altura total" << endl;
-                cout << arbol3.Altura() << endl;
-                break;
-            case 6:
-                if (arbol.revisarRojoNegro() == 1)
-                {
-                    cout << "respuesta es verdadera ,el arbol tiene nodos rojos con hijos negros" << endl;
-                }
-                else
-                {
-                    cout << "la respuesta es falsa, el arbol no esta nivelado con nodos rojos e hilos negros" << endl;
-                }
+                cout << arbolC->Altura() << endl;
                 break;
             case 7:
-                leerDeArchivoT(arbolC);
-                arbolC.mostrarInOrder();
+
+                if (arch.fail()) {
+                    cout << "no se encontro el archivo....";
+                    cin >> palabra;
+                }
+                else {
+                    while (!arch.eof())
+                    {
+                        arch >> palabra;
+                        arbolC->Insertar(palabra);
+                        arbolC->SetRaiz("Negro");
+                    }
+                    arch.close();
+                }
+                arbolC->mostrarInOrder();
                 break;
         }
     } while (op != 0);
