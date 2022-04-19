@@ -1,85 +1,61 @@
-#include "ArbolRN.h"
+#include "AVL.h"
+
+#include <set>
 #include <fstream>
-#include <string.h>
+#include <iterator>
 
-void leerDeArchivo(ArbolRN<int>& arbolBinario)
+void leerDeArchivo(ArbolVL<int>& arbolBinario)
 {
-    fstream ar;
+    ifstream archi;
     int numerosArchivo;
+    archi.open("10000_Numeros.txt");
 
-    ar.open("10000_Numeros.txt", ios::in);
-    if (!ar)
+    if (!archi)
         cout << "No se puede abrir";
     else
-        while (ar >> numerosArchivo)
+        while (!archi.eof() && archi >> numerosArchivo)
         {
-            arbolBinario.Insertar(numerosArchivo);
+            arbolBinario.insertar(numerosArchivo);
         }
-    ar.close();
+    archi.close();
+}
+
+void leerDeArchivoSET(set<int>& s1)
+{
+    ifstream archi;
+    int numerosArchivo;
+    archi.open("10000_Numeros.txt");
+
+    if (!archi)
+        cout << "No se puede abrir";
+    else
+        while (!archi.eof() && archi >> numerosArchivo)
+        {
+            s1.insert(numerosArchivo);
+        }
+    archi.close();
 }
 
 int main()
 {
-    ArbolRN<string>* arbolC = new ArbolRN<string>();
-    ArbolRN<int> arbol;
-    ArbolRN<int> arbol3;
-    ifstream arch("cien.txt");
-    string palabra;
+    set<int> s1;
+    ArbolVL<int> arbol1;
 
-    int op;
-    do {
-        cout << " \n1. Insertar Elementos \n ";
-        cout << " \n2. Insertar Archivo\n ";
-        cout << " \n3. Mostrar InOrder \n ";
-        cout << " \n4. Contar Nodos \n ";
-        cout << " \n5. Contar Altura \n ";
-        cout << " \n6. Revisar \n";
-        cout << " \n7. ARCHIVO CIEN \n";
-        cin >> op;
-        switch (op)
-        {
-            case 1:
-                arbol.Insertar(7);
-                arbol.Insertar(15);
-                arbol.Insertar(8);
-                arbol.Insertar(12);
-                arbol.Insertar(9);
-                arbol.Insertar(5);
-                arbol.Insertar(3);
-                arbol.Insertar(2);
-                break;
-            case 2:
-                leerDeArchivo(arbol3);
-                break;
-            case 3:
-                arbol3.mostrarInOrder();
-                break;
-            case 4:
-                cout << "contando total" << endl;
-                cout << arbolC->Contar() << endl;
-                break;
-            case 5:
-                cout << "altura total" << endl;
-                cout << arbolC->Altura() << endl;
-                break;
-            case 7:
+    leerDeArchivo(arbol1);
 
-                if (arch.fail()) {
-                    cout << "no se encontro el archivo....";
-                    cin >> palabra;
-                }
-                else {
-                    while (!arch.eof())
-                    {
-                        arch >> palabra;
-                        arbolC->Insertar(palabra);
-                        arbolC->SetRaiz("Negro");
-                    }
-                    arch.close();
-                }
-                arbolC->mostrarInOrder();
-                break;
-        }
-    } while (op != 0);
+//    leerDeArchivoSET(s1);
 
+  /*  bool encontrado;
+    for (int i = 0; i < 10000000; i++)
+    {
+        encontrado = arbol1.Buscar2(rand() % 10000);
+    }
+
+    for (int j = 0; j < 10000000; j++)
+    {
+        s1.find(rand() % 10000);
+    }
+    */
+    arbol1.mostrarInOrder();
+    return 0;
 }

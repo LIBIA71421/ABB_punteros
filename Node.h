@@ -7,63 +7,59 @@ class Node
 {
 private:
 	T Dato;
-	string Color;
-	Node<T>* izquierda;
-	Node<T>* derecha;
-	int cont;
+	Node<T>* Izq;
+	Node<T>* Der;
+	int FACTOR;
 public:
+	Node(T dato);
 	Node();
 	~Node();
 	Node<T>*& getIzquierda();
 	Node<T>*& getDerecha();
 	T getDato();
-	string getColor();
-	void setColor(string palabra);
+	int getFactor();
+	void setFactor(int palabra);
 	void setDato(T dato);
-	void crearIzquierda(Node<T>* newizquierda);
-	void crearDerecha(Node<T>* newderecha);
-
-	int getCont();
-	void setCont();
-
-//	void operator=(T dato);
+	void setIzquierda(Node<T>* newizquierda);
+	void setDerecha(Node<T>* newderecha);
 };
 
 template<class T>
 Node<T>::Node()
 {
-	this->izquierda = NULL;
-	this->derecha = NULL;
-	this->Color = "";
-	cont = 0;
+	this->Izq = NULL;
+	this->Der = NULL;
+	this->Dato = NULL;
+	this->FACTOR = 0;
+}
+
+template<class T>
+Node<T>::Node(T dato)
+{
+	this->Izq = NULL;
+	this->Der = NULL;
+	this->Dato = dato;
+	this->FACTOR = 0;
 }
 
 template<class T>
 Node<T>::~Node()
 {
+
 }
 
 template<class T>
 Node<T>*& Node<T>::getIzquierda()
 {
-	return izquierda;
+	return Izq;
 }
 
 template<class T>
 Node<T>*& Node<T>::getDerecha()
 {
-	return derecha;
+	return Der;
 }
-template<class T>
-int Node<T>::getCont()
-{
-	return cont;
-}
-template<class T>
-void Node<T>::setCont()
-{
-	cont++;
-}
+
 template<class T>
 T Node<T>::getDato()
 {
@@ -71,32 +67,32 @@ T Node<T>::getDato()
 }
 
 template<class T>
-string Node<T>::getColor()
+int Node<T>::getFactor()
 {
-	return Color;
+	return FACTOR;
 }
 
 template<class T>
-void Node<T>::setColor(string palabra)
+void Node<T>::setFactor(int palabra)
 {
-	Color = palabra;
+	FACTOR = palabra;
 }
 
 template<class T>
 void Node<T>::setDato(T dato)
 {
 	Dato = dato;
-	cont++;
 }
 
 template<class T>
-void Node<T>::crearIzquierda(Node<T>* newizquierda)
+void Node<T>::setIzquierda(Node<T>* newizquierda)
 {
-	izquierda = newizquierda;
+	Izq = newizquierda;
 }
 
 template<class T>
-void Node<T>::crearDerecha(Node<T>* newderecha)
+void Node<T>::setDerecha(Node<T>* newderecha)
 {
-	derecha = newderecha;
+	Der = newderecha;
 }
+
