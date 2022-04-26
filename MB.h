@@ -2,6 +2,7 @@
 
 #include "Node.h"
 #include <fstream>
+#include <list>
 #define TAM 10000
 
 template<class T>
@@ -17,11 +18,15 @@ public:
 	void insertar(T elem);
 	void recuperar_Abajo_Arriba(int posNodo);
 	void recuperar_Arriba_Abajo(int posNodo);
-	T eliminarMayor();
+	T eliminar();
 	void recorrer();
 	T getMayor();
 	T getMenor();
 	int getTam();
+	void leerARCH();
+	T getDat();
+	void showlist(list <int> lista);
+	list<T> Heap_Sort();
 };
 
 template<class T>
@@ -119,7 +124,7 @@ void MB<T>::recorrer()
 }
 
 template<class T>
-T MB<T>::eliminarMayor()
+T MB<T>::eliminar()
 {
 	T mayor;
 	if (ultimo == -1)
@@ -154,4 +159,43 @@ int MB<T>::getTam()
 {
 	return ultimo;
 }
+ template<class T>
+void MB<T>::leerARCH() {
+	 ifstream archi;
+	 int numerosArchivo;
+	 archi.open("10000_Numeros.txt");
 
+	 if (!archi)
+		 cout << "No se puede abrir";
+	 else
+		 while (!archi.eof() && archi >> numerosArchivo)
+		 {
+			 insertar(numerosArchivo);
+		 }
+	 archi.close();
+ }
+ template<class T>
+ T MB<T>::getDat()
+ {
+	 return arr[1].getElem();
+ }
+
+ template<class T>
+ list<T> MB<T>::Heap_Sort() {
+	 list<int> L;
+	 leerARCH();
+	 for (int i = 0; i < 10000; i++)
+	 {
+		 L.push_back(eliminar());
+	 }
+/*	 for (auto it = L.begin(); it != L.end(); ++it)
+		 cout << ' ' << *it;*/
+	 list <int> ::iterator i;
+	 for (i = L.begin(); i != L.end(); ++i)
+	 {
+		 //cout << '\t' << *i;
+		 cout << *i << endl;
+	 }
+	 cout << endl;
+ return L;
+ }

@@ -17,6 +17,25 @@ void leerDeArchivo(MB<int>& arbol) {
         }
     archi.close();
 }
+void showlist(list <int> lista)
+{
+    list <int> ::iterator i;
+    for (i = lista.begin(); i != lista.end(); ++i)
+    {
+        //cout << '\t' << *i;
+        cout << *i << endl;
+    }
+    cout << endl;
+}
+
+void heap_Sort(MB<int>& arbol, list <int> lista)
+{
+    for (int i = 0; i < 10000; i++)
+    {
+        lista.push_back(arbol.eliminar());
+    }
+    showlist(lista);
+}
 
 int main()
 {
@@ -30,7 +49,8 @@ int main()
         cout << " \n4. Eliminar Mayor  ";
         cout << " \n5. Mayor  ";
         cout << " \n6. Menor ";
-        cout << " \n7. Tam >> ";
+        cout << " \n7. Tam ";
+        cout << " \n8. HEAP-SORT >>  ";
         cin >> op;
         switch (op)
         {
@@ -46,7 +66,7 @@ int main()
             arbol.recorrer();
             break;
         case 4:
-            arbol.eliminarMayor();
+            arbol.eliminar();
             arbol.recorrer();
             break;
         case 5:
@@ -57,6 +77,15 @@ int main()
             break;
         case 7:
             cout << "La altura es: " << arbol.getTam() << endl;
+            break;
+        case 8:
+            arbol.Heap_Sort();
+            break;
+        case 9:
+            MB<int> mb;
+            leerDeArchivo(mb);
+            list <int> lista;
+            heap_Sort(mb, lista);
             break;
         }
     } while (op != 0);
