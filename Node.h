@@ -7,92 +7,53 @@ class Node
 {
 private:
 	T Dato;
-	Node<T>* Izq;
-	Node<T>* Der;
-	int FACTOR;
+	bool presente;
+	Node<T>* izquierda;
+	Node<T>* derecha;
 public:
-	Node(T dato);
 	Node();
 	~Node();
-	Node<T>*& getIzquierda();
-	Node<T>*& getDerecha();
-	T getDato();
-	int getFactor();
-	void setFactor(int palabra);
+	T getElem();
+	void Presente(bool palabra);
+	bool getPresente();
 	void setDato(T dato);
-	void setIzquierda(Node<T>* newizquierda);
-	void setDerecha(Node<T>* newderecha);
 };
 
 template<class T>
 Node<T>::Node()
 {
-	this->Izq = NULL;
-	this->Der = NULL;
+	this->izquierda = NULL;
+	this->derecha = NULL;
 	this->Dato = NULL;
-	this->FACTOR = 0;
-}
-
-template<class T>
-Node<T>::Node(T dato)
-{
-	this->Izq = NULL;
-	this->Der = NULL;
-	this->Dato = dato;
-	this->FACTOR = 0;
+	this->presente = false;
 }
 
 template<class T>
 Node<T>::~Node()
 {
-
 }
 
 template<class T>
-Node<T>*& Node<T>::getIzquierda()
-{
-	return Izq;
-}
-
-template<class T>
-Node<T>*& Node<T>::getDerecha()
-{
-	return Der;
-}
-
-template<class T>
-T Node<T>::getDato()
+T Node<T>::getElem()
 {
 	return Dato;
 }
 
 template<class T>
-int Node<T>::getFactor()
+void Node<T>::Presente(bool palabra)
 {
-	return FACTOR;
+	presente = palabra;
 }
 
 template<class T>
-void Node<T>::setFactor(int palabra)
+bool Node<T>::getPresente()
 {
-	FACTOR = palabra;
+	return presente;
 }
 
 template<class T>
 void Node<T>::setDato(T dato)
 {
 	Dato = dato;
-}
-
-template<class T>
-void Node<T>::setIzquierda(Node<T>* newizquierda)
-{
-	Izq = newizquierda;
-}
-
-template<class T>
-void Node<T>::setDerecha(Node<T>* newderecha)
-{
-	Der = newderecha;
 }
 

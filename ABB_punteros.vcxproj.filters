@@ -23,7 +23,7 @@
     <ClInclude Include="Node.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="AVL.h">
+    <ClInclude Include="MB.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
