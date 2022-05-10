@@ -20,7 +20,7 @@ public:
 	void leerArchivo(string nombreArchivo, T* (*convertir)(string linea));
 	void insertarPrincipio(T* dato);
 	void eliminarPrincipio();
-	void insertarFinal(T* dato);
+	void insertarLista(T* dato);
 	void eliminarFinal();
 	void mostrar(void (*mostrarT)(T*));
 	void mostrar();
@@ -82,7 +82,7 @@ void Lista7<T>::leerArchivo(string nombreArchivo, T* (*convertir)(string linea))
 		string linea;
 		while (getline(archivo, linea))
 		{
-			insertarFinal(convertir(linea));
+			insertarLista(convertir(linea));
 		}
 		archivo.close();
 	}
@@ -129,7 +129,7 @@ void Lista7<T>::eliminarPrincipio()
 }
 
 template<class T>
-void Lista7<T>::insertarFinal(T* dato)
+void Lista7<T>::insertarLista(T* dato)
 {
 
 	if (primer == NULL && ultimo == NULL)
@@ -196,7 +196,10 @@ void Lista7<T>::mostrar() {
 	else {
 		Par<T>* aux = primer;
 		while (aux != NULL) {
-			cout << aux->getDato() << " - ";
+			aux->mostrar();
+			///cout << aux->getDato() << " - ";
+			
+			cout << " - ";
 			aux = aux->getSiguiente();
 		}
 

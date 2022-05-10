@@ -13,11 +13,17 @@ public:
 	Par(T* dato, Par* s);
 	Par();
 	~Par();
+	void mostrar();
 	T* getDato();
 	void setDato(T* dato);
 	void setSiguiente(Par<T>* siguiente);
 	Par<T>* getSiguiente();
 };
+
+template<class T>
+void Par<T>::mostrar() {
+	cout << *dato; 
+}
 
 template<class T>
 Par<T>::Par(T* dato, Par* s)

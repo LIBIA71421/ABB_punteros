@@ -10,7 +10,7 @@ private:
     Lista7<T> L;
 public:
     void poner(T val) {
-        L.insertarFinal(val);
+        L.insertarLista(val);
     }
     int sacar() {
         return L.eliminar_prin();
