@@ -1,15 +1,25 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "ABB.h"
+#include "Grafo.h"
 using namespace std;
 
 int main() {
 	ifstream arch("cien.txt");
 	string palabra;
 
-	ABB<string>* abb = new ABB<string>();
+	Grafo<string>* g = new Grafo<string>();
+	g->insertar(0, new string(""));
 
+
+
+
+
+
+
+
+
+	/*
 	if (arch.fail()) {
 		cout << "no se encontro el archivo....";
 		cin >> palabra;
@@ -18,15 +28,12 @@ int main() {
 		while (!arch.eof())
 		{
 			arch >> palabra;
-			abb->protectedPush(palabra);
+			//g->insertar(palabra,palabra);
 		}
 		arch.close();
-	}
+	}*/
 
-	Node<string>* root = abb->getRoot();
-	cout << "There are: " << endl << abb->count(root) << " nodes" << endl;
-	cin >> palabra;
-	// Node<string>* root = abb->getRoot();
-   //  abb->inTraversal(root);
+	
+
 	return 0;
 }
