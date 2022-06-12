@@ -142,11 +142,10 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cola.h" />
-    <ClInclude Include="Grafo.h" />
     <ClInclude Include="Lista7.h" />
     <ClInclude Include="ListaVaciaException.h" />
-    <ClInclude Include="Node.h" />
+    <ClInclude Include="Mincut.h" />
+    <ClInclude Include="Nodo.h" />
     <ClInclude Include="Par.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

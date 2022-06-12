@@ -22,7 +22,7 @@ public:
 
 template<class T>
 void Par<T>::mostrar() {
-	cout << *dato; 
+	cout << *dato;
 }
 
 template<class T>

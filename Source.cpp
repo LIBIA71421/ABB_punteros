@@ -1,74 +1,70 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include "Grafo.h"
-using namespace std;
+// mincut.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+#include "Mincut.h"
+#include <math.h>
+
+int main()
+{
+    Mincut mincut;
+    
+    int min = 10000;
+    double tam = mincut.getTamGrafo();
+    int  res = 0;
+    double n = 0;
+    int resp= 0;
+    
+    mincut.llenarDesdeArchivo("MIN_CUT_CON_NOMBRES3.txt");
+//    mincut.llenarDesdeArchivo("archivo.txt");
+    mincut.mostrar();
+    cout << "++++++++++++++++++" << endl;
+    resp = mincut.algoritmo();
+    cout << endl << " ++++++++++++++++++mostrar2" << endl;
+    mincut.mostrar();
+    cout << endl << " ++++++++++++++++++mostrar3" << endl;
+    
+    //cout << mincut2.getTamActual();
+    cout << "CORTE MINIMO >> " << resp;
+
+    
+
+/*  
+    
+    while (n < (tam * tam) * log10(tam))
+        {
+            grafo = grafoOri;
+            res = minCut(grafo);
+            cout << res << endl;
+            if (res < min)
+            {
+                min = res;
+            }
+            n++;
+        }
+    cout << "el minimo es: " << min << endl;
+    return 0;
 
 
-int main() {
-	ifstream arch("cien.txt");
-	string palabra;
-	int op;
-	Grafo<string> g;
-	//g.insertar(0, new string("hello"));
-	//g.mostrar();
 
-	do {
-		cout << "GRAFO::Martes" << endl;
-		cout << "1. Cargar Archi" << endl;
-		cout << "2. Insertar Arista" << endl;
-		cout << "3. MostrarPadres" << endl;
-		cout << "4. Mostrar Grafo" << endl;
-		cout << "5. Iniciar MARCA = false y Padre = -1" << endl;
-		cout << "6. BFS" << endl;
-		cout << "7. DFS" << endl;
-		cin >> op;
-		
-		switch (op)
-		{
-		case 1:
-			if (arch.fail()) {
-				cout << "no se encontro el archivo....";
-				cin >> palabra;
-			}
-			else {
-				while (!arch.eof())
-				{
-					arch >> palabra;
-					g.insertar(0, new string(palabra));
-				}
-				arch.close();
-			}
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			g.mostrar();
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			break;
-		}		
-	} while (op != 0);
-
-	return 0;
+    Mincut mincut;
+    mincut.llenarDesdeArchivo("MIN_CUT_CON_NOMBRES3.txt");
+    int n = mincut.getTamGrafo();
+    int logN = (int)log(n);
+    int i = 0;
+    int max = n * n * logN;
+    int min = 100000;
+    cout << max << endl;
+    while (i < max)
+    {
+        Mincut mincut2 = mincut;
+        cout << " tam: " << mincut2.getTamGrafo();
+        int res = mincut2.algoritmo();
+        cout << "res: " << res << endl;
+        if (res < min) {
+            cout << "hola" << endl;
+            min = res;
+        }
+        cout << min << endl;
+        i++;
+    }*/
 }
-/*
-if (arch.fail()) {
-				cout << "no se encontro el archivo....";
-				cin >> palabra;
-			}
-			else {
-				while (!arch.eof())
-				{
-					arch >> palabra;
-					g.insertar(0,new string(palabra));
-				}
-				arch.close();
-			}
-*/
+

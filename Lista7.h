@@ -27,6 +27,8 @@ public:
 	T* buscarIesimaPosicion(int pos);
 	Par<T>* getPrimer();
 	void eliminarElemDado(T* dato);
+	int getTam();
+	bool existe(T* dato);
 };
 
 template<class T>
@@ -198,11 +200,12 @@ void Lista7<T>::mostrar() {
 		while (aux != NULL) {
 			aux->mostrar();
 			///cout << aux->getDato() << " - ";
-			
-			cout << " - ";
+
+			if (aux->getSiguiente())
+				cout << " - ";
 			aux = aux->getSiguiente();
 		}
-
+		cout << endl;
 	}
 }
 template<class T>
@@ -232,6 +235,26 @@ Par<T>* Lista7<T>::getPrimer()
 
 template<class T>
 
+bool Lista7<T>::existe(T* dato) {
+	if (primer == NULL && ultimo == NULL)
+	{
+		throw ListaVaciaException();
+	}
+	else
+	{
+		Par<T>* aux = primer;
+		while (aux != NULL) {
+			if (*aux->getDato() == *dato)
+			{
+				return true;
+			}
+			aux = aux->getSiguiente();
+		}
+	}
+	return false;
+}
+
+template<class T>
 void Lista7<T>::eliminarElemDado(T* dato) {
 	if (primer == NULL && ultimo == NULL) {
 		throw ListaVaciaException();
@@ -245,7 +268,7 @@ void Lista7<T>::eliminarElemDado(T* dato) {
 		}
 		else {
 			Par<T>* aux = primer;
-			while (*aux->getSiguiente()->getDato() != *dato && aux != ultimo) {
+			while (*aux->getSiguiente()->getDato() != *dato && aux != NULL) {
 				aux = aux->getSiguiente();
 			}
 			if (*aux->getSiguiente()->getDato() == *dato) {
@@ -253,9 +276,22 @@ void Lista7<T>::eliminarElemDado(T* dato) {
 				delete aux->getSiguiente();
 				aux->setSiguiente(ayuda);
 			}
-
 		}
 	}
 }
 
-
+template<class T>
+int Lista7<T>::getTam() {
+	int tam = 0;
+	if (primer == NULL) {
+		return tam;
+	}
+	else {
+		Par<T>* aux = primer;
+		while (aux != NULL) {
+			tam++;
+			aux = aux->getSiguiente();
+		}
+	}
+	return tam;
+}
